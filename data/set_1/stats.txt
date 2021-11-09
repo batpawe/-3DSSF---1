@@ -1,0 +1,15 @@
+Time stats for Art - Set 1
+Time of Stereo Naive for 2 patch size and 4 disparity
+0 seconds
+Peak Signal To Noise Ratio: 28.242774
+Structural Similarity Index Measure: 6417.000000
+Time stats for (+10) Art - Set 1
+Time of Stereo Naive for 12 patch size and 14 disparity
+15 seconds
+Peak Signal To Noise Ratio: 26.159274
+Structural Similarity Index Measure: 7287.000000
+Time of Dynamic Programming for 18 occlusion
+76 seconds
+Peak Signal To Noise Ratio: 33.094925
+Structural Similarity Index Measure: 6210.000000
+Art Set 1 103 seconds

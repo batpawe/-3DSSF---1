@@ -1,0 +1,15 @@
+Time stats for Bowl - Set 5
+Time of Stereo Naive for 2 patch size and 4 disparity
+0 seconds
+Peak Signal To Noise Ratio: -nan
+Structural Similarity Index Measure: 346.000000
+Time stats for (+10) Bowl - Set 5
+Time of Stereo Naive for 12 patch size and 14 disparity
+14 seconds
+Peak Signal To Noise Ratio: -nan
+Structural Similarity Index Measure: 95.000000
+Time of Dynamic Programming for 18 occlusion
+64 seconds
+Peak Signal To Noise Ratio: -nan
+Structural Similarity Index Measure: 193.000000
+Bowl Set 5: 88 seconds

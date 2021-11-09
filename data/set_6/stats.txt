@@ -1,0 +1,17 @@
+Time stats for Pots - Set 6
+Time of Stereo Naive for 2 patch size and 4 disparity
+0 seconds
+Peak Signal To Noise Ratio: -nan
+Structural Similarity Index Measure: 19.000000
+Time stats for (+10) Pots - Set 6
+Time of Stereo Naive for 12 patch size and 14 disparity
+15 seconds
+Peak Signal To Noise Ratio: -nan
+Structural Similarity Index Measure: 7.000000
+Time of Dynamic Programming for 18 occlusion
+71 seconds
+Peak Signal To Noise Ratio: -nan
+Structural Similarity Index Measure: 4294967326.000000
+Pots Set 6: 96 seconds
+
+Total time: 392 seconds
