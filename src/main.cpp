@@ -20,6 +20,7 @@ cv::Mat matchStereoSSDNaive(cv::Mat img1, cv::Mat img2, int patch_size = 2, int 
         }
         unsigned char disparity_adjust = 255 / disparity;
         for(int i = patch_half+1; i < img1.rows-patch_half; i++){
+#pragma omp parallel for
             for(int j = patch_half+1; j < img1.cols-patch_half; j++){
                 unsigned char best_offset = 0;
                 int prev_ssd = 999999999;
@@ -55,12 +56,14 @@ std::tuple<cv::Mat, cv::Mat> dynamicStereoMatching(cv::Mat img1, cv::Mat img2, i
 
     std::vector<std::vector<int>> cost(img1.cols,std::vector<int>(img1.cols, 0));
     std::vector<std::vector<int>> path(img1.cols,std::vector<int>(img1.cols, 0));
+
     for(int k = 0; k < img1.rows; k++){
+#pragma omp parallel for
         for(int i = 0; i < img1.cols; i++) {
             cost[i][0] = i*occlusion;
             cost[0][i] = i*occlusion;
         }
-
+#pragma omp parallel for
         for(int i = 1; i < img1.cols; i++){
             for(int j = 1; j < img1.cols; j++){
                 int t1 = img1.at<uchar>(k, i);
@@ -164,8 +167,8 @@ std::tuple<cv::Mat, cv::Mat, cv::Mat, cv::Mat> analyseStereoPair(cv::Mat img1, c
     std::cout << duration.count() << " seconds" << std::endl;
     std::cout << "Peak Signal To Noise Ratio: " << std::to_string(peakSignalToNoiseRatio(SSD, ground, peak_block_size, 255)) << std::endl;
     std::cout << "Structural Similarity Index Measure: " << std::to_string(compareImagesSSIM(SSD, ground, ssim_block_size)) << std::endl;
-    cv::imshow("Stereo Naive", SSD);
-    cv::waitKey();
+//    cv::imshow("Stereo Naive", SSD);
+//    cv::waitKey();
 
     cv::Mat SSD_2;
     std::cout<<"Time stats for (+10) " + name<<std::endl;
@@ -177,8 +180,8 @@ std::tuple<cv::Mat, cv::Mat, cv::Mat, cv::Mat> analyseStereoPair(cv::Mat img1, c
     std::cout << duration.count() << " seconds" << std::endl;
     std::cout << "Peak Signal To Noise Ratio: " << std::to_string(peakSignalToNoiseRatio(SSD_2, ground, peak_block_size, 255)) << std::endl;
     std::cout << "Structural Similarity Index Measure: " << std::to_string(compareImagesSSIM(SSD_2, ground, ssim_block_size)) << std::endl;
-    cv::imshow("Stereo Naive 2", SSD_2);
-    cv::waitKey();
+//    cv::imshow("Stereo Naive 2", SSD_2);
+//    cv::waitKey();
 
     start = std::chrono::high_resolution_clock::now();
     auto [disparityImageLeft, disparityImageRight] = dynamicStereoMatching(std::move(img1), std::move(img2), occlusion);
@@ -188,10 +191,10 @@ std::tuple<cv::Mat, cv::Mat, cv::Mat, cv::Mat> analyseStereoPair(cv::Mat img1, c
     std::cout << duration.count() << " seconds" << std::endl;
     std::cout << "Peak Signal To Noise Ratio: " << std::to_string(peakSignalToNoiseRatio(disparityImageLeft, ground, peak_block_size, 255)) << std::endl;
     std::cout << "Structural Similarity Index Measure: " << std::to_string(compareImagesSSIM(disparityImageLeft, ground, ssim_block_size)) << std::endl;
-    cv::imshow("Disparity Image Left", disparityImageLeft);
-    cv::waitKey();
-    cv::imshow("Disparity Image Right", disparityImageRight);
-    cv::waitKey();
+//    cv::imshow("Disparity Image Left", disparityImageLeft);
+//    cv::waitKey();
+//    cv::imshow("Disparity Image Right", disparityImageRight);
+//    cv::waitKey();
 
     cv::imwrite(path_to_save + "SSD.png", SSD);
     cv::imwrite(path_to_save + "SSD_2.png", SSD_2);
