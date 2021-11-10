@@ -50,6 +50,7 @@ Statistics for each algorithm:
 
 Pointcloud 3d model:
 ![3D pointcloud model](https://i.ibb.co/JrxmHzT/img.png)
+
 **Conclusion**
 In case of "Art" stereo pair dynamic programming creates much more comprehensive disparity image than in case of SSD. The disadvantage of that is that DP costs more time. In terms of scores all of the images are more or less the same.
 
@@ -66,6 +67,7 @@ Statistics for each algorithm:
 
 Pointcloud 3d model:
 ![3D Pointcloud model](https://i.ibb.co/2KmKfrt/img.png)
+
 **Conclusion**
 In case of "Mask" stereo pair dynamic programming creates much more comprehensive disparity image than in case of SSD, here to solve the problem of SSDs results it would be nice to tweak a little bit the parameters.
 
@@ -82,6 +84,7 @@ Statistics for each algorithm:
 
 Pointcloud 3d model:
 ![3D Pointcloud model](https://i.ibb.co/JrF1ZK0/img.png)
+
 **Conclusion**
 In case of "Toys" stereo pair dynamic programming creates much more comprehensive disparity image than in case of SSD, here to solve the problem of SSDs results it would be nice to tweak a little bit the parameters just as in previous pair. What's more it seems that for small size images the Signal to Noise ratio and SSIM Index show meaningless information.
 
@@ -112,6 +115,7 @@ Statistics for each algorithm:
 
 Pointcloud 3d model:
 ![3D Pointcloud model](https://i.ibb.co/jrXRbKm/img.png)
+
 **Conclusion**
 Here once again Naive algorithm shows quite nice results with good score and disparity image.
 
@@ -129,6 +133,7 @@ Statistics for each algorithm:
 Pointcloud 3d model:
 
 ![3D Pointcloud model](https://i.ibb.co/rQvB9k4/img.png)
+
 **Conclusion**
 Case of pots is quite unusual because for DP algo, we can see that the SSIM score is super high. However (I did not check that), I think it is because of some memory issue in the code.
 
