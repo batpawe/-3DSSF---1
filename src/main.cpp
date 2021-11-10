@@ -107,6 +107,21 @@ std::tuple<cv::Mat, cv::Mat> dynamicStereoMatching(cv::Mat img1, cv::Mat img2, i
     return {disparityImageLeft, disparityImageRight};
 }
 
+std::tuple<cv::Mat, cv::Mat> openCvMethodBM(cv::Mat img1, cv::Mat img2, int numDisparities, int blockSize){
+    cv::Mat disparityImageLeft(img1.rows, img1.cols, CV_8U, cv::Scalar(254));
+    cv::Mat disparityImageRight(img2.rows, img2.cols, CV_8U, cv::Scalar(254));
+    cv::Mat convertedImageLeft(img2.rows, img2.cols, CV_8U);
+    cv::Mat convertedImageRight(img2.rows, img2.cols, CV_8U);
+    cv::resize(img1, convertedImageLeft, cv::Size(), 0.5, 0.5);
+    cv::resize(img2, convertedImageRight, cv::Size(), 0.5, 0.5);
+    cv::Ptr<cv::StereoBM> stereoMatchLeft = cv::StereoBM::create(numDisparities, blockSize);
+    cv::Ptr<cv::StereoBM> stereoMatchRight = cv::StereoBM::create(numDisparities, blockSize);
+
+    stereoMatchLeft->compute(convertedImageLeft, convertedImageRight, disparityImageLeft);
+    stereoMatchRight->compute(convertedImageRight, convertedImageLeft, disparityImageRight);
+    return {disparityImageLeft, disparityImageRight};
+}
+
 // ----------------------------------------------------------------------------------------------------------
 
 // COMPARISON TECHNIQUES
@@ -183,6 +198,17 @@ std::tuple<cv::Mat, cv::Mat, cv::Mat, cv::Mat> analyseStereoPair(cv::Mat img1, c
 //    cv::imshow("Stereo Naive 2", SSD_2);
 //    cv::waitKey();
 
+    cv::Mat stereoBM;
+    std::cout<<"Time stats for OpenCV StereoBM " + name<<std::endl;
+    start = std::chrono::high_resolution_clock::now();
+    auto [disparityImageLeftBM, disparityImageRightBM] = openCvMethodBM(img1, img2, 16, patch_size+3);
+    stop = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::seconds>(stop-start);
+    std::cout << duration.count() << " seconds" << std::endl;
+    std::cout << "Peak Signal To Noise Ratio: " << std::to_string(peakSignalToNoiseRatio(disparityImageLeftBM, ground, peak_block_size, 255)) << std::endl;
+//    cv::imshow("OpenCV Stereo BM", disparityImageLeftBM);
+//    cv::waitKey();
+
     start = std::chrono::high_resolution_clock::now();
     auto [disparityImageLeft, disparityImageRight] = dynamicStereoMatching(std::move(img1), std::move(img2), occlusion);
     stop = std::chrono::high_resolution_clock::now();
@@ -200,6 +226,8 @@ std::tuple<cv::Mat, cv::Mat, cv::Mat, cv::Mat> analyseStereoPair(cv::Mat img1, c
     cv::imwrite(path_to_save + "SSD_2.png", SSD_2);
     cv::imwrite(path_to_save + "dynamic_programing_left.png", disparityImageLeft);
     cv::imwrite(path_to_save + "dynamic_programing_right.png", disparityImageRight);
+    cv::imwrite(path_to_save + "stereoBM_left.png", disparityImageLeftBM);
+    cv::imwrite(path_to_save + "stereoBM_right.png", disparityImageRightBM);
 
     return {SSD, SSD_2, disparityImageLeft, disparityImageRight};
 }
