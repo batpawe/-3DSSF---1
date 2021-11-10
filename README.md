@@ -49,8 +49,14 @@ Statistics for each algorithm:
 | SSD(2,4) | <1second |<1 second | 28,24 | 6417 |
 | SSD(12,14) | 15 seconds |2 seconds | 26,15 | 7287 |
 | DP(18) | 76 seconds | 12 seconds | 33,89 | 6210 |
+| OpenCV StereoBM(16, 5) | 0 seconds | - | 26.53 | - |
 
-Pointcloud 3d model:
+### OpenCM StereoBM result
+
+![Stereo BM OpenCV](https://i.ibb.co/VWdQq5t/stereo-BM-left.png)
+
+
+### Pointcloud 3d model
 ![3D pointcloud model](https://i.ibb.co/JrxmHzT/img.png)
 
 **Conclusion**
@@ -63,11 +69,17 @@ Image size: 450x375
 Statistics for each algorithm:
 | Algorihm | Time | OpenMP | Signal to Noise ratio | SSIM Index |
 |--|--|--|--|--|
-| SSD(2,4) | <1second | <0 second | ~0 | 51 |
-| SSD(12,14) | 1 second |<0 second | ~0 | 92 |
-| DP(18) | 2 seconds |<0 second | ~0 | 184 |
+| SSD(2,4) | <1second | <0 second | 28,35 | 51 |
+| SSD(12,14) | 1 second |<0 second | 26,78 | 92 |
+| DP(18) | 2 seconds |<0 second | 33,63 | 184 |
+| OpenCV StereoBM(16, 5) | 0 seconds | 26,83 | 26.83 | - |
 
-Pointcloud 3d model:
+### OpenCM StereoBM result
+
+![Stereo BM OpenCV](https://i.ibb.co/jkcD1rs/stereo-BM-left.png)
+
+
+### Pointcloud 3d model
 ![3D Pointcloud model](https://i.ibb.co/2KmKfrt/img.png)
 
 **Conclusion**
@@ -80,11 +92,17 @@ Image size: 450x375
 Statistics for each algorithm:
 | Algorihm | Time | OpenMP Time | Signal to Noise ratio | SSIM Index |
 |--|--|--|--|--|
-| SSD(2,4) | <1second |<0 second | ~0 | 0 |
-| SSD(12,14) | 1 second |<0 second | ~0 | 0 |
-| DP(18) | 2 seconds |<0 second | ~0 | 0 |
+| SSD(2,4) | <1second |<0 second | 28,16 | 0 |
+| SSD(12,14) | 1 second |<0 second | 26,44 | 0 |
+| DP(18) | 2 seconds |<0 second | 34,43 | 0 |
+| OpenCV StereoBM(16, 5) | 0 seconds | 26,93 | 26.93 | - |
 
-Pointcloud 3d model:
+### OpenCM StereoBM result
+
+![StereoBM Results](https://i.ibb.co/JCRSwJ4/stereo-BM-left.png)
+
+
+### Pointcloud 3d model
 ![3D Pointcloud model](https://i.ibb.co/JrF1ZK0/img.png)
 
 **Conclusion**
@@ -97,11 +115,16 @@ Image size: 1282x1110
 Statistics for each algorithm:
 | Algorihm | Time | OpenMP | Signal to Noise ratio | SSIM Index |
 |--|--|--|--|--|
-| SSD(2,4) | <1second | <0 second | ~0 | 1180 |
-| SSD(12,14) | 14 seconds | 2 seconds | ~0 | 193 |
-| DP(18) | 67 secondss | 10 seconds | ~0 | 615 |
+| SSD(2,4) | <1second | <0 second | 28,35 | 1180 |
+| SSD(12,14) | 14 seconds | 2 seconds | 25,21 | 193 |
+| DP(18) | 67 secondss | 10 seconds | 35,81 | 615 |
+| OpenCV StereoBM(16, 5) | 2 seconds |  -| 25.21 | - |
 
-Pointcloud 3d model:
+### OpenCM StereoBM result
+
+![Stereo BM Results](https://i.ibb.co/wwyhV28/stereo-BM-left.png)
+
+### Pointcloud 3d model
 ![3D Pointcloud model](https://i.ibb.co/pX1DBnk/img.png)**Conclusion**
 Seems that with "easier" shapes or rather single objects on the image, naive SSD works better than in case of more complicated images (i.e. SSIM score for SSD is better than for DP)
 
@@ -114,8 +137,13 @@ Statistics for each algorithm:
 | SSD(2,4) | <1second |0 second | 22,34 | 346 |
 | SSD(12,14) | 14 seconds |2 seconds | 26,12 | 95 |
 | DP(18) | 64 seconds |10 seconds | 18,09 | 193 |
+| OpenCV StereoBM(16, 5) | 2 seconds |  -| 26,37 | - |
 
-Pointcloud 3d model:
+### OpenCM StereoBM result
+
+![Stereo BM OpenCV](https://i.ibb.co/2NZ37Pk/stereo-BM-left.png)
+
+### Pointcloud 3d model
 ![3D Pointcloud model](https://i.ibb.co/jrXRbKm/img.png)
 
 **Conclusion**
@@ -131,8 +159,13 @@ Statistics for each algorithm:
 | SSD(2,4) | <1second |0 second | 22,34 | 19 |
 | SSD(12,14) | 15 seconds |2 seconds | 26,12 | 7 |
 | DP(18) | 71 seconds |11 seconds | 18,09 | 4294967326 |
+| OpenCV StereoBM(16, 5) | 2 seconds |  -| 25,51 | - |
 
-Pointcloud 3d model:
+### OpenCM StereoBM result
+
+![Stereo BM OpenCV](https://i.ibb.co/0hjx22W/stereo-BM-left.png)
+
+### Pointcloud 3d model
 
 ![3D Pointcloud model](https://i.ibb.co/rQvB9k4/img.png)
 
@@ -149,10 +182,14 @@ Some general conclusion that I can see after analysing these 6 sets.
  4. The total time of analysing these 6 stereo pairs was **392 seconds** - without OpenMP and **100 seconds** with OpenMP.
  5. Generating 3D pointcloud can be improved for sure (with tweaking the camera parameters) but I think mine results are quite satisfactory.
  6. Bigger images (greater size) takes much more time to compute than smaller images.
+ 7. StereoBM from OpenCV is as fast as my implementation of SSD (in OpenMP) but in my opinion results are not always satisfactory. I prefer to use SSD which may work a little bit slower but gives better results.
 
-## Improvements done
+## Optionals done
 
+### OpenMP
 I implemented OpenMP library to the code so I could see how it will improve the way the algorithms works.
 Of course OpenMP pragmas were written in such a place that it won't change the result of the disparity images. These places can be found in code (it should be easily visible in last commit).
 
 Using OpenMP I noticed more ten times faster performance of all stereo pair. Making the longest DP calculation faster than SSD(12,14) for no OpenMP implementation.
+### StereoBM from OpenCV
+In the code I used StereoBM disparity image algorithm provided by OpenCV to compute disparity maps and compare scores achieved by my metrics.
