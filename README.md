@@ -29,11 +29,12 @@ If the images are not showing up please contact me through github. (it is possib
 
 For each disparity image .ply file was generated and then visualized in Meshlab software. Screenshots of these 3d models can be found below. .ply files can be found in this repository as well.
 
-For all images 3 disparity images were created:
+For all images 4 disparity images were created:
 
  - **SSD**(patch_size = 2, disparity = 4)
  - **SSD**(patch_size = 12, disparity = 14)
  - **DP**(occlusion = 18)
+ - **StereoBM (OpenCV)**(disparity = 16, patch_size = 5)
 
 The reason for using same parameters in all cases is to show that there is are no gold parameters that will work with all images. Each image has to be taken individually and therefore some results might not be satisfactory.
 
