@@ -9,6 +9,7 @@ This repository contains different algorithms about stereo vision matching, disp
  - Different metrics (**SSIM, Peak signal to noise ratio**),
  - Pointcloud generator for disparity images and writer to **.ply file**,
  - **OpenMP** implementation of SSD and DP stereo matching,
+ - Comparison with **StereoBM OpenCV** method,
 
 All 6 stereo pair images were taken from [Middlebury stereo datasets](http://vision.middlebury.edu/stereo/data) together with ground truth image provided in the package.
 Different parameters (in pointcloud generator) were taken from Middlebury as well. *(_3740px_ and _160mm_ for the focal length and the baseline).*
